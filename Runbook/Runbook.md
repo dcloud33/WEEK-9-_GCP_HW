@@ -55,7 +55,7 @@ Provides backend servers that can automatically scale up or down depending on tr
 9. Keep the scope Global, protocol will be TCP and port will be 80.
 10. In Health Criteria, edit the check interval to 30 seconds, it takes time when booting up scripts. Keep everything else as the default.
 ---
-
+- side note: Google health check IP ranges must be allowed in the firewall rules or the instances will fail health checks and stay unhealthy.
 
 ---
 
@@ -87,13 +87,5 @@ Provides backend servers that can automatically scale up or down depending on tr
 3. Open a new browser and put http://<IP-address-you copied>
 4. After you paste it, the browser should open displaying the information that the script had provided.
 
----
 
-# Key Settings Explained
-
-## Health Check Firewall Access
-
-Health check IP ranges must be allowed through firewall rules or instances will remain unhealthy.
-
----
 
