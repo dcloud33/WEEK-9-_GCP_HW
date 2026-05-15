@@ -12,10 +12,11 @@ resource "google_compute_instance_template" "instance_template" {
 
   network_interface {
     network    = google_compute_network.vpc_network.id
-    
+    subnetwork = google_compute_subnetwork.vpc_subnetwork.id
 
     access_config {}
   }
+
 
   metadata_startup_script = file("${path.module}./src/supera.sh")
 
