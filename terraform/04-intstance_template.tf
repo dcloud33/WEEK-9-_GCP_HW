@@ -17,7 +17,7 @@ resource "google_compute_instance_template" "instance_template" {
     access_config {}
   }
 
-  metadata_startup_script = file("${path.module}/src/supera.sh")
+  metadata_startup_script = file("${path.module}./src/supera.sh")
 
   lifecycle {
     create_before_destroy = true

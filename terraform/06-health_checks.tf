@@ -44,7 +44,7 @@ resource "google_compute_health_check" "mig_health_check" {
   }
 }
 
-resource "google_compute_health_check" "lb_backend" {
+resource "google_compute_health_check" "lb_backend_healthcheck" {
   name = "lb-backend-health-check"
 
 

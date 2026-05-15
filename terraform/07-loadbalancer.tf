@@ -28,7 +28,7 @@ resource "google_compute_backend_service" "backend_service" {
   timeout_sec           = 30
 
   health_checks = [
-    google_compute_health_check.lb_health_check.id
+    google_compute_health_check.lb_backend_healthcheck.id
   ]
 
   backend {
