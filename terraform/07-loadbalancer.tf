@@ -1,23 +1,23 @@
-resource "google_compute_url_map" "web" {
-  name            = "url-map"
+resource "google_compute_url_map" "global_lb" {
+  name            = "global-load-balancer"
   default_service = google_compute_backend_service.backend_service.id
 }
 
-resource "google_compute_target_http_proxy" "web" {
+resource "google_compute_target_http_proxy" "http_proxy" {
   name    = "web-http-proxy"
-  url_map = google_compute_url_map.web.id
+  url_map = google_compute_url_map.global_lb.id
 }
 
-resource "google_compute_global_address" "web" {
+resource "google_compute_global_address" "lb_ip" {
   name = "loadbalancer-global-ip"
 }
 
 resource "google_compute_global_forwarding_rule" "http_forwarding" {
   name                  = "http-forwarding-rule"
-  ip_address            = google_compute_global_address.web.id
+  ip_address            = google_compute_global_address.lb_ip.id
   port_range            = "80"
   load_balancing_scheme = "EXTERNAL_MANAGED"
-  target                = google_compute_target_http_proxy.web.id
+  target                = google_compute_target_http_proxy.http_proxy.id
 }
 
 resource "google_compute_backend_service" "backend_service" {
